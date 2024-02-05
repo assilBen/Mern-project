@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import OAuth from '../components/OAuth';
 
-export default function Singup() {
+export default function Signup() {
     const [formData, setFormData] = useState({});
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -15,7 +16,7 @@ export default function Singup() {
         try {
             setLoading(true);
             setError(false);
-            const res = await fetch('/api/auth/singup', {
+            const res = await fetch('/api/auth/signup', {
                 method : "POST",
                 headers:{
                    'Content-Type': 'application/json',
@@ -29,7 +30,7 @@ export default function Singup() {
             setError(true);
             return ;
            }
-           navigate("/sing-in");
+           navigate("/sign-in");
 
 
         } catch (error) {
@@ -49,10 +50,11 @@ export default function Singup() {
        <button disabled={loading} className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'> 
          {loading? 'Loading...' : 'Sing Up'}
         </button>
-        </form>
+        <OAuth></OAuth>
+         </form>
         <div className='flex gap-2 mt-5'>
             <p>Have an account?</p>
-            <Link to="/sing-in">
+            <Link to="/sign-in">
             <span className='text-blue-500'>Sing in</span>
             </Link>
         </div>
